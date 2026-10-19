@@ -1,0 +1,6 @@
+build/
+*.vvp
+*.vcd
+*.fst
+*.lxt
+*.log
