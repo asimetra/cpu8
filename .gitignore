@@ -4,3 +4,4 @@ build/
 *.fst
 *.lxt
 *.log
+.vscode/

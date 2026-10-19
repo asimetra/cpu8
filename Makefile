@@ -32,7 +32,7 @@ $(BUILD)/%.vvp: tb/%.v $(SOURCES) | $(BUILD)
 	$(IVERILOG) $(IVFLAGS) -s $* -o $@ $<
 
 test: $(addprefix $(BUILD)/,$(addsuffix .vvp,$(TBS)))
-	@if [ -z "$(TBS)" ]; then echo "tb/ altında tb_*.v yok"; exit 0; fi; \
+	@if [ -z "$(TBS)" ]; then echo "no tb_*.v in tb/"; exit 0; fi; \
 	pass=0; fail=0; \
 	for t in $(TBS); do \
 	  if (cd $(BUILD) && $(VVP) -n $$t.vvp > $$t.log 2>&1) \
@@ -45,8 +45,8 @@ test: $(addprefix $(BUILD)/,$(addsuffix .vvp,$(TBS)))
 	echo "$$pass passed, $$fail failed"; [ $$fail -eq 0 ]
 
 check-tb:
-	@if [ -z "$(TB)" ]; then echo "kullanım: make $(MAKECMDGOALS) TB=<modül>"; exit 1; fi
-	@if [ ! -f tb/$(T).v ]; then echo "tb/$(T).v bulunamadı"; exit 1; fi
+	@if [ -z "$(TB)" ]; then echo "usage: make $(MAKECMDGOALS) TB=<module>"; exit 1; fi
+	@if [ ! -f tb/$(T).v ]; then echo "tb/$(T).v not found"; exit 1; fi
 
 sim: check-tb $(BUILD)/$(T).vvp
 	cd $(BUILD) && $(VVP) -n $(T).vvp
@@ -56,7 +56,7 @@ wave: sim
 	$(GTKWAVE) $(BUILD)/$(T).vcd $(wildcard waves/$(T).gtkw) &
 
 lint:
-	@if [ -z "$(wildcard rtl/*.v)" ]; then echo "rtl/ altında .v yok"; exit 0; fi; \
+	@if [ -z "$(wildcard rtl/*.v)" ]; then echo "no .v files in rtl/"; exit 0; fi; \
 	$(IVERILOG) $(IVFLAGS) -o /dev/null $(wildcard rtl/*.v)
 
 clean:

@@ -1,8 +1,0 @@
-{
-  "verilog.linting.linter": "iverilog",
-  "verilog.linting.iverilog.arguments": "-g2012 -Wall -Wno-timescale -Irtl -Itb -yrtl",
-  "verilog.linting.iverilog.runAtFileLocation": false,
-  "files.exclude": {
-    "build": true
-  }
-}
