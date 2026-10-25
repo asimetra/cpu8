@@ -8,8 +8,7 @@ module register_bus (
     input wire clk
 );
     wire[3:0] en;
-    wire[7:0] q0, q1, q2, q3;
-    wire[7:0] d, source_out;
+    wire[7:0] d, q0, q1, q2, q3, source_out;
     
     assign d = load ? data_in : source_out;
     assign en = 1 << dest_sel;

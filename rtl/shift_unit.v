@@ -1,3 +1,5 @@
+`timescale  1ns/1ps
+
 module shift_unit(
     input wire [7:0] a,
     input wire sel, // 0: shl, 1: shr

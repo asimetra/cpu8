@@ -1,3 +1,5 @@
+`timescale  1ns/1ps
+
 module logic_unit(
     input wire [7:0] a,
     input wire [7:0] b,
